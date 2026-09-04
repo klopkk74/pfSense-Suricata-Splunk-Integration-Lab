@@ -44,7 +44,7 @@
 | **Suricata** | (trên pfSense) | `em0 (WAN)`, `em1 (LAN)` | IDS/IPS phát hiện tấn công scan |
 | **Splunk Server** | `server` | `192.168.1.138` | Splunk Enterprise (Indexer & Search Head) |
 | **Ubuntu Client** | `ubuntu-client` | `192.168.1.131` | Máy chủ mục tiêu |
-| **Kali Linux** | `kali` | `192.168.187.130` | Máy tấn công (nmap scan) |
+| **Kali Linux** | `kali` | `192.168.187.130` | Máy tấn công |
 
 ---
 
