@@ -19,12 +19,12 @@
 | Công cụ | Phiên bản | 
 |---------|-----------|
 | [pfSense](https://www.pfsense.org/) | 2.7.2 |
-| [Suricata](https://suricata.io/) | 6.0.0 |
-| [Splunk Enterprise](https://www.splunk.com/) |
-| [Syslog-ng](https://www.syslog-ng.com/) | 4.4 |
+| [Suricata](https://suricata.io/) | 7.0.8 |
+| [Splunk Enterprise](https://www.splunk.com/) | 10.4.2 |
+| [Syslog-ng](https://www.syslog-ng.com/) | 4.4.0 |
 | [Telegram Bot API](https://core.telegram.org/bots/api) |
 | [Python](https://www.python.org/) | 3.10+ |
-| [Kali Linux](https://www.kali.org/) | 2026.1 |
+| [Kali Linux](https://www.kali.org/) | 2026.2 |
 | [Ubuntu Server](https://ubuntu.com/) | 22.04 LTS |
 
 ---
@@ -64,12 +64,23 @@
 
 ## 📸 Kết quả đạt được
 
-| Ảnh chụp | Mô tả |
-|----------|-------|
-| ![Kali Nmap Scan](images/kali-nmap-scan.png) | Kali Linux thực hiện tấn công scan `nmap 192.168.1.131` |
-| ![Suricata Detect Attack](images/suricata-detect-attack.png) | Suricata trên pfSense phát hiện và hiển thị alert |
-| ![Splunk Collect Log](images/splunk-collect-log.png) | Splunk thu thập log Suricata đã parse |
-| ![Telegram Notice](images/telegram-notice.png) | Telegram gửi cảnh báo đến người quản trị |
+![Kali Nmap Scan](images/kali-nmap-scan.png)
+*Kali Linux thực hiện tấn công scan `nmap 192.168.1.131`*
+
+---
+
+![Suricata Detect Attack](images/suricata-detect-attack.png)
+*Suricata trên pfSense phát hiện và hiển thị alert*
+
+---
+
+![Splunk Collect Log](images/splunk-collect-log.png)
+*Splunk thu thập log Suricata đã parse*
+
+---
+
+![Telegram Notice](images/telegram-notice.png)
+*Telegram gửi cảnh báo đến người quản trị*
 
 ---
 
