@@ -16,6 +16,9 @@
 - **Ứng phó sự cố**: Xây dựng quy trình phân tích, xác thực, ngăn chặn, và báo cáo sự cố.
 
 ### 🔧 Công nghệ sử dụng
+
+<div align="center">
+  
 | Công cụ | Phiên bản | 
 |---------|-----------|
 | [pfSense](https://www.pfsense.org/) | 2.7.2 |
@@ -27,6 +30,7 @@
 | [Kali Linux](https://www.kali.org/) | 2026.2 |
 | [Ubuntu Server](https://ubuntu.com/) | 22.04 LTS |
 
+</div>
 ---
 
 ### Mô hình vật lý
@@ -54,6 +58,8 @@
 
 ### 🔄 Luồng dữ liệu
 
+<div align="center">
+  
 | Bước | Từ | Đến | Giao thức / Port | Mô tả |
 |------|----|-----|------------------|-------|
 | 1 | Attacker | Internet | - | Gửi gói tin tấn công |
@@ -64,6 +70,7 @@
 | 6 | Splunk | Telegram | HTTPS | Trigger Actions gửi cảnh báo |
 | 7 | Telegram | Admin | - | Gửi tin nhắn cảnh báo |
 
+</div>
 ---
 
 ## 📸 Kết quả đạt được
