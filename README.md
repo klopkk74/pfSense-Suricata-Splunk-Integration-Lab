@@ -15,6 +15,8 @@
 - **Cảnh báo tự động**: Gửi cảnh báo qua Telegram để giám sát và ứng phó kịp thời.
 - **Ứng phó sự cố**: Xây dựng quy trình phân tích, xác thực, ngăn chặn, và báo cáo sự cố.
 
+---
+
 ### 🔧 Công nghệ sử dụng
   
 | Công cụ | Phiên bản | 
@@ -28,6 +30,7 @@
 | [Kali Linux](https://www.kali.org/) | 2026.2 |
 | [Ubuntu Server](https://ubuntu.com/) | 22.04 LTS |
 
+---
 
 ### Mô hình vật lý
 
@@ -42,6 +45,8 @@
 | **Kali Linux** | `kali` | `192.168.187.130` | Máy tấn công |
 
 </div>
+
+---
 
 ## 🧱 Kiến trúc hệ thống
 
@@ -66,6 +71,7 @@
 
 </div>
 
+---
 
 ## 📸 Kết quả đạt được
 
@@ -98,6 +104,8 @@
   <br>
   <em>Telegram gửi cảnh báo đến người quản trị</em>
 </p>
+
+---
 
 ## 📂 Cấu trúc thư mục
 
