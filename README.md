@@ -32,7 +32,7 @@
 
 ---
 
-### Mô hình vật lý
+### 🧱 Mô hình vật lý
 
 <div align="center">
 
@@ -48,7 +48,7 @@
 
 ---
 
-## 🧱 Kiến trúc hệ thống
+## 🏗️ Kiến trúc hệ thống
 
 ### Sơ đồ tổng quan
 ![Architecture](diagrams/architecture.png)
@@ -142,6 +142,7 @@ pfSense-Suricata-Splunk-Integration-Lab/
 │   └── telegram-notice.png
 └── lab-setup/
     └── vmware-settings.md
+
 ```
 
 ## 📚 Tài liệu
