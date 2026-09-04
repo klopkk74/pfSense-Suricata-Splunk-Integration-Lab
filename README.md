@@ -15,8 +15,6 @@
 - **Cảnh báo tự động**: Gửi cảnh báo qua Telegram để giám sát và ứng phó kịp thời.
 - **Ứng phó sự cố**: Xây dựng quy trình phân tích, xác thực, ngăn chặn, và báo cáo sự cố.
 
----
-
 ### 🔧 Công nghệ sử dụng
   
 | Công cụ | Phiên bản | 
@@ -29,8 +27,6 @@
 | [Python](https://www.python.org/) | 3.14.4 |
 | [Kali Linux](https://www.kali.org/) | 2026.2 |
 | [Ubuntu Server](https://ubuntu.com/) | 22.04 LTS |
-
----
 
 ### 🧱 Mô hình vật lý
 
@@ -52,8 +48,6 @@
 
 ### Sơ đồ tổng quan
 ![Architecture](diagrams/architecture.png)
-
----
 
 ### 🔄 Luồng dữ liệu
 
