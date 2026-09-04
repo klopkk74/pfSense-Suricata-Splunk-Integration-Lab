@@ -16,8 +16,6 @@
 - **Ứng phó sự cố**: Xây dựng quy trình phân tích, xác thực, ngăn chặn, và báo cáo sự cố.
 
 ### 🔧 Công nghệ sử dụng
-
-<div align="center">
   
 | Công cụ | Phiên bản | 
 |---------|-----------|
@@ -26,11 +24,10 @@
 | [Splunk Enterprise](https://www.splunk.com/) | 10.4.2 |
 | [Syslog-ng](https://www.syslog-ng.com/) | 4.4.0 |
 | [Telegram Bot API](https://core.telegram.org/bots/api) |
-| [Python](https://www.python.org/) | 3.10+ |
+| [Python](https://www.python.org/) | 3.14.4 |
 | [Kali Linux](https://www.kali.org/) | 2026.2 |
 | [Ubuntu Server](https://ubuntu.com/) | 22.04 LTS |
 
-</div>
 ---
 
 ### Mô hình vật lý
