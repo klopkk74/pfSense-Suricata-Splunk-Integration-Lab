@@ -34,7 +34,9 @@ Dự án xây dựng hệ thống giám sát an ninh mạng tập trung (SOC Lab
 - Ubuntu Server 22.04 LTS
 
 ## 📂 Cấu trúc thư mục
-soc-lab-splunk-pfsense-suricata/
+
+```text
+pfSense-Suricata-Splunk-Integration-Lab/
 ├── README.md
 ├── LICENSE
 ├── .gitignore
@@ -57,9 +59,16 @@ soc-lab-splunk-pfsense-suricata/
 ├── scripts/
 │   └── telegram_alert.py
 ├── diagrams/
-├── screenshots/
+│   ├── architecture.png
+│   └── data-flow.png
+├── images/
+│   ├── kali-nmap-scan.png
+│   ├── splunk-collect-log.png
+│   ├── suricata-detect-attack.png
+│   └── telegram-notice.png
 └── lab-setup/
     └── vmware-settings.md
+```
 
 ## 📚 Tài liệu
 - [Hướng dẫn cài đặt](docs/setup-guide.md)
