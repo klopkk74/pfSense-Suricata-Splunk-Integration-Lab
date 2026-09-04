@@ -64,25 +64,35 @@
 
 ## 📸 Kết quả đạt được
 
-![Kali Nmap Scan](images/kali-nmap-scan.png)
-*Kali Linux thực hiện tấn công scan `nmap 192.168.1.131`*
+<p align="center">
+  <img src="images/kali-nmap-scan.png" alt="Kali Nmap Scan" width="80%">
+  <br>
+  <em>Kali Linux thực hiện tấn công scan nmap 192.168.1.131</em>
+</p>
 
 ---
 
-![Suricata Detect Attack](images/suricata-detect-attack.png)
-*Suricata trên pfSense phát hiện và hiển thị alert*
+<p align="center">
+  <img src="images/suricata-detect-attack.png" alt="Suricata Detect Attack" width="80%">
+  <br>
+  <em>Suricata trên pfSense phát hiện và hiển thị alert</em>
+</p>
 
 ---
 
-![Splunk Collect Log](images/splunk-collect-log.png)
-*Splunk thu thập log Suricata đã parse*
+<p align="center">
+  <img src="images/splunk-collect-log.png" alt="Splunk Collect Log" width="80%">
+  <br>
+  <em>Splunk thu thập log Suricata đã parse</em>
+</p>
 
 ---
 
-![Telegram Notice](images/telegram-notice.png)
-*Telegram gửi cảnh báo đến người quản trị*
-
----
+<p align="center">
+  <img src="images/telegram-notice.png" alt="Telegram Notice" width="80%">
+  <br>
+  <em>Telegram gửi cảnh báo đến người quản trị</em>
+</p>
 
 ## 📂 Cấu trúc thư mục
 
