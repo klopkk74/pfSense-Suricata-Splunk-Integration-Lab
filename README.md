@@ -3,7 +3,7 @@
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![GitHub last commit](https://img.shields.io/github/last-commit/klopkk74/pfSense-Suricata-Splunk-Integration-Lab)](https://github.com/klopkk74/pfSense-Suricata-Splunk-Integration-Lab)
 [![Splunk](https://img.shields.io/badge/Splunk-10.4.2-00A3E0?logo=splunk&logoColor=white)](https://www.splunk.com/)
-[![Python](https://img.shields.io/badge/Python-3.10%2B-blue?logo=python&logoColor=white)](https://www.python.org/)
+[![Python](https://img.shields.io/badge/Python-3.14.4-blue?logo=python&logoColor=white)](https://www.python.org/)
 [![pfSense](https://img.shields.io/badge/pfSense-2.7.2-212121?logo=pfsense&logoColor=white)](https://www.pfsense.org/)
 [![Suricata](https://img.shields.io/badge/Suricata-7.0.8-FF6B00?logo=suricata&logoColor=white)](https://suricata.io/)
 
