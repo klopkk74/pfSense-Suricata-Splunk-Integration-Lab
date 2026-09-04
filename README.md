@@ -15,7 +15,9 @@
 - **Cảnh báo tự động**: Gửi cảnh báo qua Telegram để giám sát và ứng phó kịp thời.
 - **Ứng phó sự cố**: Xây dựng quy trình phân tích, xác thực, ngăn chặn, và báo cáo sự cố.
 
-### 🔧 Công nghệ sử dụng
+  ---
+
+## 🔧 Công nghệ sử dụng
   
 | Công cụ | Phiên bản | 
 |---------|-----------|
@@ -28,7 +30,7 @@
 | [Kali Linux](https://www.kali.org/) | 2026.2 |
 | [Ubuntu Server](https://ubuntu.com/) | 22.04 LTS |
 
-### 🧱 Mô hình vật lý
+### 📋 Thông tin thiết bị
 
 <div align="center">
 
@@ -75,23 +77,17 @@
   <em>Kali Linux thực hiện tấn công scan nmap 192.168.1.131</em>
 </p>
 
----
-
 <p align="center">
   <img src="images/suricata-detect-attack.png" alt="Suricata Detect Attack" width="80%">
   <br>
   <em>Suricata trên pfSense phát hiện và hiển thị alert</em>
 </p>
 
----
-
 <p align="center">
   <img src="images/splunk-collect-log.png" alt="Splunk Collect Log" width="80%">
   <br>
   <em>Splunk thu thập log Suricata đã parse</em>
 </p>
-
----
 
 <p align="center">
   <img src="images/telegram-notice.png" alt="Telegram Notice" width="80%">
