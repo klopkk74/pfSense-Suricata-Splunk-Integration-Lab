@@ -32,7 +32,7 @@
 ## 🧱 Kiến trúc hệ thống
 
 ### Sơ đồ tổng quan
-![Architecture](diagrams/SOC_Lab_Architecture_Diagram.png)
+![Architecture](diagrams/architecture.png)
 
 
 
