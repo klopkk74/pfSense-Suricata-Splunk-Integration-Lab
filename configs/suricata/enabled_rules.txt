@@ -1,0 +1,18 @@
+# Suricata rules enabled for scan detection on pfSense
+
+# NMAP Scan Detection
+2000537  # ET SCAN NMAP -sS window 2048
+2000536  # ET SCAN NMAP -sO
+2000538  # ET SCAN NMAP -sA (1)
+2000540  # ET SCAN NMAP -sA (2)
+2000543  # ET SCAN NMAP -f -sF
+2000544  # ET SCAN NMAP -f -sN
+2000546  # ET SCAN NMAP -f -sX
+2008654  # ET SCAN SQLix SQL Injection
+2009358  # ET SCAN Nmap Scripting Engine User-Agent Detected (Nmap Scripting Engine)
+2009359  # ET SCAN Nmap Scripting Engine User-Agent Detected (Nmap NSE)
+2013778  # ET SCAN NMAP SQL Spider Scan
+2018489  # ET SCAN NMAP OS Detection Probe
+2022579  # ET SCAN MsSQL Malicious
+2021023  # ET SCAN Nmap NSE Heartbleed Request
+2021024  # ET SCAN Nmap NSE Heartbleed Response

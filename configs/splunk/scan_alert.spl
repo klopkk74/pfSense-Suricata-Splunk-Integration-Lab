@@ -1,0 +1,3 @@
+index=main sourcetype=suricata event_type=alert (signature="*SCAN*" OR category="*Scan*")
+| table _time, src_ip, dest_ip, dest_port, proto, signature, category, severity_id, action, dvc
+| sort - _time
