@@ -16,25 +16,18 @@
 - **Ứng phó sự cố**: Xây dựng quy trình phân tích, xác thực, ngăn chặn, và báo cáo sự cố.
 
 ### 🔧 Công nghệ sử dụng
-| Công cụ | Phiên bản | Vai trò |
-|---------|-----------|---------|
-| [pfSense](https://www.pfsense.org/) | 2.7.2 | Tường lửa, gateway, chạy Suricata |
-| [Suricata](https://suricata.io/) | 6.0.0 | IDS/IPS phát hiện tấn công mạng |
-| [Splunk Enterprise](https://www.splunk.com/) | 9.3.1 | Thu thập, lưu trữ, phân tích log |
-| [Syslog-ng](https://www.syslog-ng.com/) | 4.4 | Chuyển tiếp log từ pfSense đến Splunk |
-| [Telegram Bot API](https://core.telegram.org/bots/api) | - | Gửi cảnh báo tự động |
-| [Python](https://www.python.org/) | 3.10+ | Script gửi cảnh báo Telegram |
-| [Kali Linux](https://www.kali.org/) | 2026.1 | Máy tấn công (nmap scan) |
-| [Ubuntu Server](https://ubuntu.com/) | 22.04 LTS | Máy chủ mục tiêu |
+| Công cụ | Phiên bản | 
+|---------|-----------|
+| [pfSense](https://www.pfsense.org/) | 2.7.2 |
+| [Suricata](https://suricata.io/) | 6.0.0 |
+| [Splunk Enterprise](https://www.splunk.com/) |
+| [Syslog-ng](https://www.syslog-ng.com/) | 4.4 |
+| [Telegram Bot API](https://core.telegram.org/bots/api) |
+| [Python](https://www.python.org/) | 3.10+ |
+| [Kali Linux](https://www.kali.org/) | 2026.1 |
+| [Ubuntu Server](https://ubuntu.com/) | 22.04 LTS |
 
 ---
-
-## 🧱 Kiến trúc hệ thống
-
-### Sơ đồ tổng quan
-![Architecture](diagrams/architecture.png)
-
-
 
 ### Mô hình vật lý
 
@@ -45,6 +38,38 @@
 | **Splunk Server** | `server` | `192.168.1.138` | Splunk Enterprise (Indexer & Search Head) |
 | **Ubuntu Client** | `ubuntu-client` | `192.168.1.131` | Máy chủ mục tiêu |
 | **Kali Linux** | `kali` | `192.168.187.130` | Máy tấn công |
+
+---
+
+## 🧱 Kiến trúc hệ thống
+
+### Sơ đồ tổng quan
+![Architecture](diagrams/architecture.png)
+
+---
+
+### 🔄 Luồng dữ liệu
+
+| Bước | Từ | Đến | Giao thức / Port | Mô tả |
+|------|----|-----|------------------|-------|
+| 1 | Attacker | Internet | - | Gửi gói tin tấn công |
+| 2 | Internet | pfSense | - | Gói tin đến WAN interface |
+| 3 | Suricata | pfSense | - | Phát hiện tấn công, ghi log vào eve.json |
+| 4 | pfSense | Splunk | UDP 1514 | Syslog-ng gửi log JSON đến Splunk |
+| 5 | Splunk | - | - | Parse JSON, lưu vào index, chạy Alert |
+| 6 | Splunk | Telegram | HTTPS | Trigger Actions gửi cảnh báo |
+| 7 | Telegram | Admin | - | Gửi tin nhắn cảnh báo |
+
+---
+
+## 📸 Kết quả đạt được
+
+| Ảnh chụp | Mô tả |
+|----------|-------|
+| ![Kali Nmap Scan](images/kali-nmap-scan.png) | Kali Linux thực hiện tấn công scan `nmap 192.168.1.131` |
+| ![Suricata Detect Attack](images/suricata-detect-attack.png) | Suricata trên pfSense phát hiện và hiển thị alert |
+| ![Splunk Collect Log](images/splunk-collect-log.png) | Splunk thu thập log Suricata đã parse |
+| ![Telegram Notice](images/telegram-notice.png) | Telegram gửi cảnh báo đến người quản trị |
 
 ---
 
