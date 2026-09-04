@@ -18,6 +18,8 @@
   ---
 
 ## 🔧 Công nghệ sử dụng
+
+<div align="center">
   
 | Công cụ | Phiên bản | 
 |---------|-----------|
@@ -29,6 +31,8 @@
 | [Python](https://www.python.org/) | 3.14.4 |
 | [Kali Linux](https://www.kali.org/) | 2026.2 |
 | [Ubuntu Server](https://ubuntu.com/) | 22.04 LTS |
+
+</div>
 
 ### 📋 Thông tin thiết bị
 
