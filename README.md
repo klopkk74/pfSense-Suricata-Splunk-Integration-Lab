@@ -28,7 +28,6 @@
 | [Kali Linux](https://www.kali.org/) | 2026.2 |
 | [Ubuntu Server](https://ubuntu.com/) | 22.04 LTS |
 
----
 
 ### Mô hình vật lý
 
@@ -43,8 +42,6 @@
 | **Kali Linux** | `kali` | `192.168.187.130` | Máy tấn công |
 
 </div>
-
----
 
 ## 🧱 Kiến trúc hệ thống
 
@@ -68,7 +65,7 @@
 | 7 | Telegram | Admin | - | Gửi tin nhắn cảnh báo |
 
 </div>
----
+
 
 ## 📸 Kết quả đạt được
 
