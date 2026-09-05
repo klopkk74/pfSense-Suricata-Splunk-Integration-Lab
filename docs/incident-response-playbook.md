@@ -6,9 +6,7 @@
 
 - Truy vấn Splunk để lấy log chi tiết:
   ```bash
-  index=* sourcetype=suricata (src_ip=<IP_nguồn> OR dest_ip=<IP_đích>)
-| table _time, src_ip, dest_ip, dest_port, proto, event_type, signature, alert.severity, action, direction
-| sort - _time
+  index=* sourcetype=suricata (src_ip=<IP_nguồn> OR dest_ip=<IP_đích>) | table _time, src_ip, dest_ip, dest_port, proto, event_type, signature, alert.severity, action, direction | sort - _time
   ```
 
 - Xác định false positive:
