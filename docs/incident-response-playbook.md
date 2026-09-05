@@ -5,7 +5,11 @@
 - Nhận cảnh báo từ Telegram (Splunk Alert) với các thông tin: thời gian, IP nguồn, IP đích, loại sự kiện, signature.
 
 - Truy vấn Splunk để lấy log chi tiết:
-  index=* sourcetype=suricata src_ip=<IP> OR dest_ip=<IP>
+  ```bash
+  index=* sourcetype=suricata (src_ip=<IP_nguồn> OR dest_ip=<IP_đích>)
+| table _time, src_ip, dest_ip, dest_port, proto, event_type, signature, alert.severity, action, direction
+| sort - _time
+  ```
 
 - Xác định false positive:
   - Kiểm tra IP nguồn có nằm trong danh sách trắng (IP nội bộ, công cụ quét hợp pháp, đối tác tin cậy) không.
