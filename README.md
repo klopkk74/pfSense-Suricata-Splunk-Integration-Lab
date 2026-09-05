@@ -111,33 +111,15 @@ pfSense-Suricata-Splunk-Integration-Lab/
 ├── LICENSE
 ├── .gitignore
 ├── .env.example
-├── docs/
-│   ├── architecture.md
-│   ├── setup-guide.md
-│   ├── incident-response-playbook.md
-│   └── troubleshooting.md
-├── configs/
-│   ├── pfsense/
-│   │   └── syslog-ng.conf
-│   ├── splunk/
-│   │   ├── props.conf
-│   │   ├── transforms.conf
-│   │   ├── alert_actions.conf
-│   │   └── scan_alert.spl
-│   └── suricata/
-│       └── enabled_rules.txt
-├── scripts/
-│   └── telegram_alert.py
-├── diagrams/
-│   ├── architecture.png
-│   └── data-flow.png
-├── images/
-│   ├── kali-nmap-scan.png
-│   ├── splunk-collect-log.png
-│   ├── suricata-detect-attack.png
-│   └── telegram-notice.png
-└── lab-setup/
-    └── vmware-settings.md
+├── docs/                  
+├── configs/               
+│   ├── pfsense/           
+│   ├── splunk/            
+│   └── suricata/          
+├── scripts/               
+├── diagrams/             
+├── images/                
+└── lab-setup/             
 
 ```
 
