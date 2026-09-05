@@ -1,6 +1,6 @@
-QUY TRÌNH ỨNG PHÓ SỰ CỐ
+# QUY TRÌNH ỨNG PHÓ SỰ CỐ
 
-PHA 1: PHÁT HIỆN VÀ PHÂN TÍCH
+## PHA 1: PHÁT HIỆN VÀ PHÂN TÍCH
 
 - Nhận cảnh báo từ Telegram (Splunk Alert) với các thông tin: thời gian, IP nguồn, IP đích, loại sự kiện, signature.
 
@@ -20,7 +20,7 @@ PHA 1: PHÁT HIỆN VÀ PHÂN TÍCH
 - Ghi nhận thông tin cơ bản vào ticket: thời gian, IP, loại sự kiện, mức độ, hành động dự kiến.
 
 
-PHA 2: NGĂN CHẶN
+## PHA 2: NGĂN CHẶN
 
 - Thực hiện ngăn chặn tạm thời:
   - Chặn IP nguồn trên pfSense.
@@ -32,7 +32,7 @@ PHA 2: NGĂN CHẶN
 - Thông báo cho các bên liên quan.
 
 
-PHA 3: ĐIỀU TRA VÀ LOẠI BỎ
+## PHA 3: ĐIỀU TRA VÀ LOẠI BỎ
 
 - Thu thập chứng cứ: log Splunk, log hệ thống, snapshot, dữ liệu mạng.
 - Xác định nguyên nhân gốc rễ của sự cố.
@@ -44,7 +44,7 @@ PHA 3: ĐIỀU TRA VÀ LOẠI BỎ
 - Xác nhận đã loại bỏ thành công.
 
 
-PHA 4: PHỤC HỒI VÀ GIÁM SÁT
+## PHA 4: PHỤC HỒI VÀ GIÁM SÁT
 
 - Phục hồi hệ thống về trạng thái hoạt động bình thường.
 - Khởi động lại các dịch vụ bị tạm dừng.
@@ -52,7 +52,7 @@ PHA 4: PHỤC HỒI VÀ GIÁM SÁT
 - Giám sát tăng cường trong 24-48 giờ sau sự cố.
 
 
-PHA 5: BÁO CÁO VÀ CẢI TIẾN
+## PHA 5: BÁO CÁO VÀ CẢI TIẾN
 
 - Viết báo cáo sự cố bao gồm:
   - Thời gian phát hiện và kết thúc sự cố.
