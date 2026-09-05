@@ -30,6 +30,10 @@
 
 ### 3.2. Cấu hình TA-suricata
 Copy file `props.conf` và `transforms.conf` vào `/opt/splunk/etc/apps/TA-suricata-master/local/`
+```bash
+cp configs/splunk/props.conf /opt/splunk/etc/apps/TA-suricata-master/local/
+cp configs/splunk/transforms.conf /opt/splunk/etc/apps/TA-suricata-master/local/
+```
 
 ## 4. Cấu hình syslog-ng trên pfSense
 - Mở file `/usr/local/etc/syslog-ng.conf`
