@@ -1,39 +1,63 @@
-# Quy trình ứng phó sự cố
+QUY TRÌNH ỨNG PHÓ SỰ CỐ
 
-## Pha 1: Phát hiện và Phân tích
+PHA 1: PHÁT HIỆN VÀ PHÂN TÍCH
 
-- Nhận alert trên Telegram: Khi Splunk phát hiện sự kiện bất thường, hệ thống tự động gửi thông báo qua Telegram đến đội ngũ SOC. Thông báo bao gồm thời gian, IP nguồn, IP đích, loại tấn công và mức độ cảnh báo. Người trực SOC xác nhận đã nhận và bắt đầu xử lý.
+- Nhận cảnh báo từ Telegram (Splunk Alert) với các thông tin: thời gian, IP nguồn, IP đích, loại sự kiện, signature.
 
-- Truy vấn Splunk: Nhà phân tích thực hiện truy vấn để lấy log chi tiết:
-  index=main sourcetype=suricata src_ip=<IP> OR dest_ip=<IP>
-  Mục đích là xác định bối cảnh sự cố, các kết nối trước và sau thời điểm phát sinh cảnh báo.
+- Truy vấn Splunk để lấy log chi tiết:
+  index=* sourcetype=suricata src_ip=<IP> OR dest_ip=<IP>
 
-- Xác định false positive: Kiểm tra IP nguồn có nằm trong danh sách trắng (IP nội bộ, công cụ quét lỗ hổng, đối tác đã xác thực) không. Đối chiếu với lịch sử hoạt động và ngữ cảnh tổ chức để xác định đây là tấn công thật hay cảnh báo giả.
+- Xác định false positive:
+  - Kiểm tra IP nguồn có nằm trong danh sách trắng (IP nội bộ, công cụ quét hợp pháp, đối tác tin cậy) không.
+  - Đối chiếu với lịch sử hoạt động và ngữ cảnh hệ thống.
 
-- Đánh giá mức độ:
-  * Medium: Scan từ IP lạ, chưa có dấu hiệu xâm nhập thành công.
-  * High: Scan kèm theo đăng nhập thành công, tài khoản bị khóa bất thường, hoặc thay đổi hệ thống không rõ nguyên nhân.
+- Phân loại mức độ nghiêm trọng:
+  * Low: Không có dấu hiệu tấn công thành công, có thể là false positive.
+  * Medium: Có dấu hiệu tấn công nhưng chưa xâm nhập thành công.
+  * High: Tấn công đã xâm nhập hoặc có nguy cơ ảnh hưởng nghiêm trọng.
+  * Critical: Hệ thống bị chiếm quyền, dữ liệu bị lộ, hoặc dịch vụ bị gián đoạn.
 
-## Pha 2: Ngăn chặn
+- Ghi nhận thông tin cơ bản vào ticket: thời gian, IP, loại sự kiện, mức độ, hành động dự kiến.
 
-- Tạo rule block trên pfSense: Truy cập pfSense Web UI, vào Firewall > Rules, chọn WAN, thêm rule Block với Source là IP nguồn. Mục đích ngăn chặn ngay lập tức các kết nối tiếp theo từ IP độc hại.
 
-- Ghi nhận hành động: Lưu ID sự cố, thời gian, IP bị chặn, loại rule, người thực hiện để phục vụ báo cáo và tránh xử lý trùng lặp.
+PHA 2: NGĂN CHẶN
 
-## Pha 3: Loại bỏ
+- Thực hiện ngăn chặn tạm thời:
+  - Chặn IP nguồn trên pfSense.
+  - Cách ly máy chủ bị ảnh hưởng.
+  - Khóa tài khoản bị xâm nhập.
+  - Giới hạn tốc độ hoặc áp dụng rate limiting.
 
-- Kiểm tra máy chủ mục tiêu: Đăng nhập vào máy chủ để kiểm tra log đăng nhập, tiến trình lạ, file thay đổi gần đây, lịch sử lệnh. Mục đích xác định kẻ tấn công đã xâm nhập được hay chưa.
+- Ghi nhận hành động và thời gian thực hiện.
+- Thông báo cho các bên liên quan.
 
-- Xác định không có dấu hiệu xâm nhập: Kết luận khi không phát hiện user lạ, backdoor, mã độc, thay đổi cấu hình bất thường. Nếu có dấu hiệu, thu thập chứng cứ và chuyển lên cấp cao hơn.
 
-## Pha 4: Phục hồi
+PHA 3: ĐIỀU TRA VÀ LOẠI BỎ
 
-- Theo dõi hệ thống sau sự cố: Giám sát trong 24-48 giờ để phát hiện hoạt động bất thường tiếp theo.
+- Thu thập chứng cứ: log Splunk, log hệ thống, snapshot, dữ liệu mạng.
+- Xác định nguyên nhân gốc rễ của sự cố.
+- Loại bỏ nguyên nhân sự cố:
+  - Xóa mã độc hoặc tệp tin độc hại.
+  - Đóng lỗ hổng bảo mật.
+  - Thu hồi quyền truy cập trái phép.
+  - Khắc phục cấu hình sai.
+- Xác nhận đã loại bỏ thành công.
 
-- Dỡ bỏ lệnh chặn sau 24h: Xóa rule block trên pfSense sau khi xác nhận hệ thống an toàn. Ghi nhận thời gian dỡ bỏ.
 
-## Pha 5: Báo cáo
+PHA 4: PHỤC HỒI VÀ GIÁM SÁT
 
-- Viết báo cáo sự cố: Tóm tắt thời gian, nguyên nhân, hành động đã thực hiện, kết quả. Lưu vào hệ thống quản lý sự cố.
+- Phục hồi hệ thống về trạng thái hoạt động bình thường.
+- Khởi động lại các dịch vụ bị tạm dừng.
+- Dỡ bỏ các biện pháp ngăn chặn tạm thời sau khi xác nhận an toàn.
+- Giám sát tăng cường trong 24-48 giờ sau sự cố.
 
-- Đề xuất cải tiến: Điều chỉnh ngưỡng alert, cập nhật rule Suricata, cải thiện Dashboard, bổ sung IP đen.
+
+PHA 5: BÁO CÁO VÀ CẢI TIẾN
+
+- Viết báo cáo sự cố bao gồm:
+  - Thời gian phát hiện và kết thúc sự cố.
+  - Nguyên nhân gốc rễ.
+  - Các hành động đã thực hiện.
+  - Kết quả và bài học kinh nghiệm.
+- Đề xuất cải tiến cho hệ thống và quy trình.
+- Lưu báo cáo vào hệ thống quản lý sự cố.
