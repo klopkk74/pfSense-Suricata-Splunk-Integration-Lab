@@ -134,4 +134,5 @@ pfSense-Suricata-Splunk-Integration-Lab/
 - Nguyễn Văn Khánh (https://github.com/klopkk74)
 
 ## 📄 Giấy phép
-MIT License
+
+Dự án được phân phối dưới giấy phép MIT. Xem file [LICENSE](LICENSE) để biết thêm chi tiết.
