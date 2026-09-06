@@ -2,16 +2,12 @@
 
 ## Sơ đồ tổng quan
 
-Kali Linux (192.168.187.130)
-    │ (nmap scan)
-    ▼
-pfSense (192.168.1.1) + Suricata (IDS/IPS)
-    │ (syslog-ng)
-    ▼
-Splunk Server (192.168.1.138)
-    │ (Alert → Telegram)
-    ▼
-Telegram Bot (@splunk_alert_NVK_bot)
+```mermaid
+flowchart TD
+    A[Kali Linux<br>192.168.187.130] -->|nmap scan| B[pfSense + Suricata<br>192.168.1.1]
+    B -->|syslog-ng UDP 1514| C[Splunk Server<br>192.168.1.138]
+    C -->|Alert → Telegram| D[Telegram Bot<br>@splunk_alert_NVK_bot]
+```
 
 ## Giải thích luồng dữ liệu
 
