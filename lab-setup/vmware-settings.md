@@ -4,14 +4,14 @@
 - RAM: 256 MB
 - CPU: 1 core
 - Disk: 20 GB
-- Network Adapter 1: NAT
+- Network Adapter: NAT
 - Network Adapter 2: Host-only
 
 ## Splunk Server
 - RAM: 4 GB
 - CPU: 2 cores
 - Disk: 50 GB
-- Network Adapter 2: Host-only
+- Network Adapter: Host-only
 
 ## Ubuntu Client
 - RAM: 1 GB
