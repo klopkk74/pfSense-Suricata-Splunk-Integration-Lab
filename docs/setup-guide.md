@@ -82,14 +82,17 @@ Tải từ: https://www.splunk.com/en_us/download/splunk-enterprise.html
 
 ### 3.2. Cài đặt trên Ubuntu Server 22.04
 
+```bash
 cd /tmp
 tar -xvzf splunk-10.4.2-*.tgz -C /opt
 sudo /opt/splunk/bin/splunk start --accept-license
+```
 
 ### 3.3. Bật khởi động cùng hệ thống
 
+```bash
 sudo /opt/splunk/bin/splunk enable boot-start
-
+```
 ### 3.4. Truy cập Splunk
 
 http://192.168.1.138:8000
@@ -104,11 +107,15 @@ File cấu hình mẫu: configs/pfsense/syslog-ng.conf
 
 Copy file vào pfSense:
 
+```bash
 scp configs/pfsense/syslog-ng.conf admin@192.168.1.1:/usr/local/etc/syslog-ng.conf
+```
 
 ### 4.2. Khởi động lại Syslog-ng
 
+```bash
 service syslog-ng restart
+```
 
 ---
 
@@ -124,12 +131,16 @@ service syslog-ng restart
 - Cài app TA-suricata từ Splunkbase: https://splunkbase.splunk.com/app/3946
 - Copy file cấu hình:
 
+```bash
 cp configs/splunk/props.conf /opt/splunk/etc/apps/TA-suricata-master/local/
 cp configs/splunk/transforms.conf /opt/splunk/etc/apps/TA-suricata-master/local/
+```
 
 - Khởi động lại Splunk:
 
+```bash
 sudo /opt/splunk/bin/splunk restart
+```
 
 ---
 
@@ -141,7 +152,8 @@ sudo /opt/splunk/bin/splunk restart
 - Title: Scan Attack Detected
 - Alert type: Scheduled, Cron: */5 * * * *, Time Range: Last 5 minutes.
 - SPL:
-
+- 
+```bash
 index=main sourcetype=suricata event_type=alert
 (
     alert.category="Detection of a Network Scan" OR
@@ -196,13 +208,15 @@ NOT (
 )
 | table _time, src_ip, dest_ip, dest_port, Attack_Type, alert.signature, alert.category, alert.severity, proto, dvc, action
 | sort -_time
+```
 
 ### 6.2. Tạo Alert phát hiện DDoS
 
 - Title: DDoS Attack Detected
 - Alert type: Scheduled, Cron: */5 * * * *, Time Range: Last 5 minutes.
 - SPL:
-
+  
+```bash
 index=main sourcetype=suricata event_type=alert
 (
     alert.category="Attempted Denial of Service" OR
@@ -237,6 +251,7 @@ NOT (
 )
 | table _time, src_ip, dest_ip, dest_port, Attack_Type, alert.signature, alert.category, alert.severity, proto, dvc, action
 | sort -_time
+```
 
 ### 6.3. Tạo Alert phát hiện SQL Injection
 
@@ -244,6 +259,7 @@ NOT (
 - Alert type: Scheduled, Cron: */5 * * * *, Time Range: Last 5 minutes.
 - SPL:
 
+```bash
 index=main sourcetype=suricata event_type=alert
 (
     alert.signature="*SQL Injection*" OR
@@ -266,6 +282,7 @@ NOT (alert.signature="*SCAN*" OR alert.category="*Scan*")
 )
 | table _time, src_ip, dest_ip, dest_port, Attack_Type, alert.signature, alert.category, alert.severity, proto, dvc, action
 | sort -_time
+```
 
 ---
 
@@ -283,9 +300,10 @@ NOT (alert.signature="*SCAN*" OR alert.category="*Scan*")
 
 ### 7.3. Cài script Telegram
 
+```bash
 cp scripts/telegram_alert.py /opt/splunk/etc/apps/search/bin/
 chmod +x /opt/splunk/etc/apps/search/bin/telegram_alert.py
-
+```
 ### 7.4. Cấu hình biến môi trường
 
 Tạo file .env trong /opt/splunk/etc/apps/search/bin/ với nội dung:
@@ -301,7 +319,9 @@ Copy file vào: /opt/splunk/etc/apps/search/local/alert_actions.conf
 
 ### 7.6. Khởi động lại Splunk
 
-sudo /opt/splunk/bin/splunk restart
+```bash
+sudo /opt/splunk/bin/splunk restart --run-as-root
+```
 
 ---
 
