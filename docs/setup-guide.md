@@ -36,12 +36,12 @@ Cấu hình tối thiểu: RAM 4 GB, CPU 2 cores, Disk 20 GB, 2 card mạng (WAN
 ### 1.3. Cài đặt pfSense
 
 - Cài từ file ISO, chọn phân vùng mặc định.
-- Cấu hình WAN (DHCP hoặc IP tĩnh) và LAN (192.168.1.1/24).
+- Cấu hình WAN (DHCP hoặc IP tĩnh) và LAN (<pfsense_IP>/24).
 - Đặt mật khẩu admin.
 
 ### 1.4. Cấu hình ban đầu
 
-- Truy cập https://192.168.1.1, chạy Setup Wizard.
+- Truy cập https://<pfsense_IP>, chạy Setup Wizard.
 - Cấu hình hostname, domain, DNS, WAN/LAN interface.
 
 ---
@@ -105,7 +105,7 @@ File cấu hình mẫu: configs/pfsense/syslog-ng.conf
 Copy file vào pfSense:
 
 ```bash
-scp configs/pfsense/syslog-ng.conf admin@192.168.1.1:/usr/local/etc/syslog-ng.conf
+scp configs/pfsense/syslog-ng.conf admin@<pfsense_IP>:/usr/local/etc/syslog-ng.conf
 ```
 
 ### 4.2. Khởi động lại Syslog-ng
