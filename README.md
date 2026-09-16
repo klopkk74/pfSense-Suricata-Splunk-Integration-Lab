@@ -9,27 +9,28 @@
 
 ## 📌 Tổng quan
 
-**pfSense-Suricata-Splunk Integration Lab** là một dự án xây dựng hệ thống giám sát an ninh mạng tập trung (SOC Lab - Security Operations Center Laboratory), mô phỏng môi trường vận hành bảo mật thực tế. Hệ thống tích hợp các công cụ mã nguồn mở và phần mềm miễn phí để phát hiện, thu thập, phân tích và cảnh báo các cuộc tấn công mạng.
+**pfSense-Suricata-Splunk Integration Lab** là một dự án xây dựng hệ thống giám sát an ninh mạng tập trung (SOC Lab – Security Operations Center Laboratory), mô phỏng môi trường vận hành bảo mật thực tế. Hệ thống tích hợp các công cụ mã nguồn mở và phần mềm miễn phí để **phát hiện, thu thập, phân tích và cảnh báo** các cuộc tấn công mạng phổ biến.
 
 ### 🎯 Mục tiêu
-- **Phát hiện tấn công mạng**: Sử dụng Suricata làm IDS/IPS để phát hiện các cuộc tấn công phổ biến.
+
+- **Phát hiện tấn công mạng**: Sử dụng Suricata làm IDS/IPS để phát hiện các cuộc tấn công phổ biến như **Nmap Scan**, **DDoS**, **SQL Injection**.
 - **Thu thập và phân tích log tập trung**: Sử dụng Splunk Enterprise để thu thập log từ pfSense và Suricata, phân tích và tạo cảnh báo.
 - **Cảnh báo tự động**: Gửi cảnh báo qua Telegram để giám sát và ứng phó kịp thời.
 - **Ứng phó sự cố**: Xây dựng quy trình phân tích, xác thực, ngăn chặn, và báo cáo sự cố.
 
-  ---
+---
 
 ## 🔧 Công nghệ sử dụng
 
 <div align="center">
-  
-| Công cụ | Phiên bản | 
+
+| Công cụ | Phiên bản |
 |---------|-----------|
 | [pfSense](https://www.pfsense.org/) | 2.7.2 |
 | [Suricata](https://suricata.io/) | 7.0.8 |
 | [Splunk Enterprise](https://www.splunk.com/) | 10.4.2 |
 | [Syslog-ng](https://www.syslog-ng.com/) | 4.4.0 |
-| [Telegram Bot API](https://core.telegram.org/bots/api) |
+| [Telegram Bot API](https://core.telegram.org/bots/api) | — |
 | [Python](https://www.python.org/) | 3.14.4 |
 | [Kali Linux](https://www.kali.org/) | 2026.2 |
 | [Ubuntu Server](https://ubuntu.com/) | 22.04 LTS |
@@ -55,50 +56,120 @@
 ## 🏗️ Kiến trúc hệ thống
 
 ### Sơ đồ tổng quan
-![Architecture](diagrams/architecture.png)
+
+<p align="center">
+  <img src="diagrams/architecture.png" alt="Architecture" width="80%">
+  <br>
+  <em>Sơ đồ kiến trúc tổng quan của hệ thống SOC Lab</em>
+</p>
 
 ### 🔄 Luồng dữ liệu
 
 <div align="center">
-  
+
 | Bước | Từ | Đến | Giao thức / Port | Mô tả |
 |------|----|-----|------------------|-------|
-| 1 | Attacker | Internet | - | Gửi gói tin tấn công |
-| 2 | Internet | pfSense | - | Gói tin đến WAN interface |
-| 3 | Suricata | pfSense | - | Phát hiện tấn công, ghi log vào eve.json |
+| 1 | Attacker | Internet | — | Gửi gói tin tấn công |
+| 2 | Internet | pfSense | — | Gói tin đến WAN interface |
+| 3 | Suricata | pfSense | — | Phát hiện tấn công, ghi log vào `eve.json` |
 | 4 | pfSense | Splunk | UDP 1514 | Syslog-ng gửi log JSON đến Splunk |
-| 5 | Splunk | - | - | Parse JSON, lưu vào index, chạy Alert |
+| 5 | Splunk | — | — | Parse JSON, lưu vào index, chạy Alert |
 | 6 | Splunk | Telegram | HTTPS | Trigger Actions gửi cảnh báo |
-| 7 | Telegram | Admin | - | Gửi tin nhắn cảnh báo |
+| 7 | Telegram | Admin | — | Gửi tin nhắn cảnh báo |
 
 </div>
 
 ---
 
-## 📸 Kết quả đạt được
+## 🚨 Các loại tấn công được phát hiện
+
+Dự án tập trung vào việc phát hiện và cảnh báo ba loại tấn công phổ biến trong môi trường mạng. Mỗi loại tấn công đều có minh chứng cụ thể qua các ảnh chụp màn hình.
+
+### 1. 🔍 Nmap Scan
+
+- **Mô tả**: Kẻ tấn công sử dụng Nmap để quét cổng, dịch vụ và hệ điều hành của máy mục tiêu.
+- **Cách phát hiện**: Suricata sử dụng các rule trong `emerging-scan.rules` để phát hiện các dấu hiệu quét cổng (SYN scan, XMAS scan, NULL scan, v.v.).
 
 <p align="center">
-  <img src="images/kali-nmap-scan.png" alt="Kali Nmap Scan" width="80%">
+  <img src="images/scan-attack/kali-attack-scan.png" alt="Kali Nmap Scan" width="80%">
   <br>
-  <em>Kali Linux thực hiện tấn công scan nmap 192.168.1.131</em>
+  <em>Kali Linux thực hiện tấn công quét cổng bằng Nmap</em>
 </p>
 
 <p align="center">
-  <img src="images/suricata-detect-attack.png" alt="Suricata Detect Attack" width="80%">
+  <img src="images/scan-attack/suricata-create-alert-scan.png" alt="Suricata Scan Alert" width="80%">
   <br>
-  <em>Suricata trên pfSense phát hiện và hiển thị alert</em>
+  <em>Suricata trên pfSense phát hiện và tạo cảnh báo Scan</em>
 </p>
 
 <p align="center">
-  <img src="images/splunk-collect-log.png" alt="Splunk Collect Log" width="80%">
+  <img src="images/scan-attack/splunk-collect-log-scan.png" alt="Splunk Scan Log" width="80%">
   <br>
-  <em>Splunk thu thập log Suricata đã parse</em>
+  <em>Splunk thu thập log Scan từ Suricata</em>
 </p>
 
 <p align="center">
-  <img src="images/telegram-notice.png" alt="Telegram Notice" width="80%">
+  <img src="images/scan-attack/telegram-notify-scan.png" alt="Telegram Scan Notification" width="80%">
   <br>
-  <em>Telegram gửi cảnh báo đến người quản trị</em>
+  <em>Telegram gửi cảnh báo Scan đến người quản trị</em>
+</p>
+
+### 2. 💥 DDoS (Distributed Denial of Service)
+
+- **Mô tả**: Kẻ tấn công gửi một lượng lớn gói tin (SYN, UDP, ICMP) để làm cạn kiệt tài nguyên của máy mục tiêu.
+- **Cách phát hiện**: Suricata sử dụng các rule trong `emerging-dos.rules` để phát hiện SYN Flood, UDP Flood, ICMP Flood.
+
+<p align="center">
+  <img src="images/ddos-attack/kali-attack-ddos.png" alt="Kali DDoS Attack" width="80%">
+  <br>
+  <em>Kali Linux thực hiện tấn công DDoS vào máy mục tiêu</em>
+</p>
+
+<p align="center">
+  <img src="images/ddos-attack/suricata-create-alert-ddos.png" alt="Suricata DDoS Alert" width="80%">
+  <br>
+  <em>Suricata trên pfSense phát hiện và tạo cảnh báo DDoS</em>
+</p>
+
+<p align="center">
+  <img src="images/ddos-attack/splunk-collect-log-ddos.png" alt="Splunk DDoS Log" width="80%">
+  <br>
+  <em>Splunk thu thập log DDoS từ Suricata</em>
+</p>
+
+<p align="center">
+  <img src="images/ddos-attack/telegram-notify-alert-ddos.png" alt="Telegram DDoS Notification" width="80%">
+  <br>
+  <em>Telegram gửi cảnh báo DDoS đến người quản trị</em>
+</p>
+
+### 3. 💉 SQL Injection
+
+- **Mô tả**: Kẻ tấn công chèn các câu lệnh SQL độc hại vào ô tìm kiếm hoặc tham số URL để truy xuất dữ liệu trái phép.
+- **Cách phát hiện**: Suricata sử dụng các rule trong `emerging-web_server.rules` để phát hiện các mẫu `UNION SELECT`, `SELECT FROM`, v.v.
+
+<p align="center">
+  <img src="images/sql-injection/kali-attack-sql-injection.png" alt="Kali SQL Injection" width="80%">
+  <br>
+  <em>Kali Linux thực hiện tấn công SQL Injection vào ô tìm kiếm</em>
+</p>
+
+<p align="center">
+  <img src="images/sql-injection/suricata-create-alert-sql-injection.png" alt="Suricata SQL Alert" width="80%">
+  <br>
+  <em>Suricata trên pfSense phát hiện và tạo cảnh báo SQL Injection</em>
+</p>
+
+<p align="center">
+  <img src="images/sql-injection/splunk-collect-log-sql-injection.png" alt="Splunk SQL Log" width="80%">
+  <br>
+  <em>Splunk thu thập log SQL Injection từ Suricata</em>
+</p>
+
+<p align="center">
+  <img src="images/sql-injection/telegram-notify-alert-sql-injection.png" alt="Telegram SQL Notification" width="80%">
+  <br>
+  <em>Telegram gửi cảnh báo SQL Injection đến người quản trị</em>
 </p>
 
 ---
@@ -118,10 +189,11 @@ pfSense-Suricata-Splunk-Integration-Lab/
 │   └── suricata/          
 ├── scripts/               
 ├── diagrams/             
-├── images/                
+├── images/
+│   ├── ddos-attack/
+│   ├── scan-attack/
+│   └── sql-injection/
 └── lab-setup/             
-
-```
 
 ---
 
