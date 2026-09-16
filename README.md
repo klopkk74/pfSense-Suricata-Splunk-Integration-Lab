@@ -184,6 +184,8 @@ Dự án tập trung vào việc phát hiện và cảnh báo ba loại tấn c�
   <em>Telegram gửi cảnh báo SQL Injection đến người quản trị</em>
 </p>
 
+---
+
 ## 📂 Cấu trúc thư mục
 
 ```text
