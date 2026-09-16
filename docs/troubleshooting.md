@@ -110,7 +110,7 @@
 **Lỗi**:
 Error binding socket; addr='AF_INET(<pfsense_IP>:5140)'
 
-- **Giải pháp**: Đổi cổng thành 5141 trong cấu hình syslog-ng
+**Giải pháp**: Đổi cổng thành 5141 trong cấu hình syslog-ng
 
 ---
 
