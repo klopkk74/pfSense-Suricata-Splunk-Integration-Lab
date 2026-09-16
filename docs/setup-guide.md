@@ -152,7 +152,7 @@ sudo /opt/splunk/bin/splunk restart
 - Title: Scan Attack Detected
 - Alert type: Scheduled, Cron: */5 * * * *, Time Range: Last 5 minutes.
 - SPL:
-- 
+  
 ```bash
 index=main sourcetype=suricata event_type=alert
 (
