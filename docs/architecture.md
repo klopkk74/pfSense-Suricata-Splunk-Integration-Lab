@@ -86,10 +86,14 @@ flowchart LR
 
 ## Các thành phần chính
 
+<div align="center">
+
 | Thành phần | Vai trò |
-|------------|---------|
+|:----------:|:--------|
 | pfSense | Tường lửa, gateway, chạy Suricata |
-| Suricata | IDS/IPS phát hiện tấn công scan |
+| Suricata | IDS/IPS phát hiện tấn công |
 | Syslog-ng | Chuyển tiếp log từ pfSense đến Splunk |
 | Splunk | Thu thập, lưu trữ, phân tích log |
 | Telegram Bot | Gửi cảnh báo tự động |
+
+</div>
