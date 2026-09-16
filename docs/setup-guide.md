@@ -306,8 +306,8 @@ chmod +x /opt/splunk/etc/apps/search/bin/telegram_alert.py
 - Tạo file .env trong /opt/splunk/etc/apps/search/bin/ với nội dung:
 
 ```bash
-TELEGRAM_BOT_TOKEN=<your_token>
-TELEGRAM_CHAT_ID=<your_chat_id>
+TELEGRAM_BOT_TOKEN=<Telegram_token>
+TELEGRAM_CHAT_ID=<Telegram_chat_id>
 ```
 
 ### 7.5. Cấu hình alert_actions.conf
