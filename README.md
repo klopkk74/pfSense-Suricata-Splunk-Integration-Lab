@@ -83,8 +83,6 @@
 
 ## 🚨 Các loại tấn công được phát hiện
 
-Dự án tập trung vào việc phát hiện và cảnh báo ba loại tấn công phổ biến trong môi trường mạng. Mỗi loại tấn công đều có minh chứng cụ thể qua các ảnh chụp màn hình.
-
 ### 1. 🔍 Nmap Scan
 
 - **Mô tả**: Kẻ tấn công sử dụng Nmap để quét cổng, dịch vụ và hệ điều hành của máy mục tiêu.
