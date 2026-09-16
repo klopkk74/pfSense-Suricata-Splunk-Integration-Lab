@@ -108,7 +108,7 @@
 ## 6. Lỗi cổng 5140 trên syslog-ng
 
 **Lỗi**:
-- Error binding socket; addr='AF_INET(<pfsense_IP>:5140)'
+Error binding socket; addr='AF_INET(<pfsense_IP>:5140)'
 
 - **Giải pháp**: Đổi cổng thành 5141 trong cấu hình syslog-ng
 
