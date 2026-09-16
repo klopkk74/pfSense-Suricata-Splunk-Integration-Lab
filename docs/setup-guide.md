@@ -1,23 +1,23 @@
 # HƯỚNG DẪN CÀI ĐẶT
 
-Lưu ý: File này chỉ tập trung vào cài đặt và cấu hình. Tham khảo thêm:
-- Kiến trúc hệ thống: architecture.md
-- Yêu cầu hệ thống: README.md
-- Xử lý lỗi: troubleshooting.md
-- Quy trình ứng phó: incident-response-playbook.md
-- Cấu hình máy ảo: lab-setup/vmware-settings.md
+> **Lưu ý**: File này chỉ tập trung vào cài đặt và cấu hình. Tham khảo thêm:
+> - [Kiến trúc hệ thống](architecture.md)
+> - [Yêu cầu hệ thống](../README.md)
+> - [Xử lý lỗi](troubleshooting.md)
+> - [Quy trình ứng phó](incident-response-playbook.md)
+> - [Cấu hình máy ảo](../lab-setup/vmware-settings.md)
 
 ---
 
-MỤC LỤC
+## MỤC LỤC
 
-1. Cài đặt pfSense
-2. Cài đặt Suricata
-3. Cài đặt Splunk Enterprise
-4. Cấu hình Syslog-ng
-5. Cấu hình Data Input trên Splunk
-6. Cấu hình Alert trên Splunk
-7. Cấu hình Telegram
+1. [Cài đặt pfSense](#1-cài-đặt-pfsense)
+2. [Cài đặt Suricata](#2-cài-đặt-suricata)
+3. [Cài đặt Splunk Enterprise](#3-cài-đặt-splunk-enterprise)
+4. [Cấu hình Syslog-ng](#4-cấu-hình-syslog-ng)
+5. [Cấu hình Data Input trên Splunk](#5-cấu-hình-data-input-trên-splunk)
+6. [Cấu hình Alert trên Splunk](#6-cấu-hình-alert-trên-splunk)
+7. [Cấu hình Telegram](#7-cấu-hình-telegram)
 
 ---
 
