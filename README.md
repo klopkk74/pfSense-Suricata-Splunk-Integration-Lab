@@ -149,13 +149,13 @@
 <p align="center">
   <img src="images/sql-injection/target-website.png" alt="Target Website" width="80%">
   <br>
-  <em>Trang web mục tiêu trước khi bị tấn công</em>
+  <em>Demo trang web mục tiêu</em>
 </p>
 
 <p align="center">
   <img src="images/sql-injection/kali-sql-injection-payload.png" alt="Kali SQL Injection Payload" width="80%">
   <br>
-  <em>Kali Linux thực hiện tấn công SQL Injection vào ô tìm kiếm</em>
+  <em>Kali Linux thực hiện tấn công SQL Injection vào thanh địa chỉ</em>
 </p>
 
 <p align="center">
