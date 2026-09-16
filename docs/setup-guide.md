@@ -3,7 +3,7 @@
 > **Lưu ý**: File này chỉ tập trung vào cài đặt và cấu hình. Tham khảo thêm:
 > - [Kiến trúc hệ thống](architecture.md)
 > - [Yêu cầu hệ thống](../README.md)
-> - [Xử lý lỗi](troubleshooting.md)
+> - [Xử lý lỗi thường gặp](troubleshooting.md)
 > - [Quy trình ứng phó](incident-response-playbook.md)
 > - [Cấu hình máy ảo](../lab-setup/vmware-settings.md)
 
@@ -29,7 +29,7 @@ Tải file ISO từ trang chủ: https://www.pfsense.org/download/
 
 ### 1.2. Tạo máy ảo trên VMware
 
-Tham chiếu cấu hình chi tiết tại: lab-setup/vmware-settings.md
+Tham chiếu cấu hình chi tiết tại: [`lab-setup/vmware-settings.md`](../lab-setup/vmware-settings.md)
 
 Cấu hình tối thiểu: RAM 4 GB, CPU 2 cores, Disk 20 GB, 2 card mạng (WAN: Bridged, LAN: VMnet1).
 
