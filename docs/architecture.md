@@ -1,8 +1,6 @@
 # Kiến trúc hệ thống
 
-## Sơ đồ tổng quan
-
-![Architecture](diagrams/architecture.png)
+## Sơ đồ tổng quan luồng hoạt động
 
 ```mermaid
 flowchart LR
@@ -24,7 +22,7 @@ flowchart LR
     C -->|Alert| E
 ```
 
-## Giải thích luồng dữ liệu
+## Giải thích luồng hoạt động
 
 ### Bước 1 — Attacker phát sinh traffic tấn công
 
