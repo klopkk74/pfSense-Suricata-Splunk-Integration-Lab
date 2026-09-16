@@ -209,12 +209,12 @@ pfSense-Suricata-Splunk-Integration-Lab/
 
 ## 📚 Tài liệu
 
-- [Hướng dẫn cài đặt](docs/setup-guide.md)
-- [Quy trình ứng phó sự cố](docs/incident-response-playbook.md)
-- [Xử lý sự cố](docs/troubleshooting.md)
+[Hướng dẫn cài đặt](docs/setup-guide.md)
+[Quy trình ứng phó sự cố](docs/incident-response-playbook.md)
+[Xử lý sự cố](docs/troubleshooting.md)
 
 ## 👨‍💻 Tác giả
-- Nguyễn Văn Khánh (https://github.com/klopkk74)
+Nguyễn Văn Khánh (https://github.com/klopkk74)
 
 ## 📄 Giấy phép
 
