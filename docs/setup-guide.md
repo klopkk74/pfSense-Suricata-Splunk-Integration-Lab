@@ -1,77 +1,310 @@
-# Hướng dẫn cài đặt
+# HƯỚNG DẪN CÀI ĐẶT
 
-## 1. Cài pfSense + Suricata
+Lưu ý: File này chỉ tập trung vào cài đặt và cấu hình. Tham khảo thêm:
+- Kiến trúc hệ thống: architecture.md
+- Yêu cầu hệ thống: README.md
+- Xử lý lỗi: troubleshooting.md
+- Quy trình ứng phó: incident-response-playbook.md
+- Cấu hình máy ảo: lab-setup/vmware-settings.md
 
-### 1.1. Cài pfSense
-- Tải pfSense CE 2.7.2
-- Tạo máy ảo với RAM 4GB, CPU 2 cores, disk 20GB
-- Cài pfSense, cấu hình WAN/LAN
+---
 
-### 1.2. Cài Suricata
-- Vào **Services > Suricata**
-- Bật Suricata trên interface LAN/WAN
-- Bật **EVE JSON Log** và chọn **FILE**
-- Bật các rule trong **emerging-scan.rules**
+MỤC LỤC
 
-## 2. Cài Splunk Enterprise
-- Tải Splunk Enterprise 9.3.1
-- Cài trên Ubuntu Server 22.04
-- Khởi động Splunk: `sudo /opt/splunk/bin/splunk start --accept-license`
-- Đặt username/password
+1. Cài đặt pfSense
+2. Cài đặt Suricata
+3. Cài đặt Splunk Enterprise
+4. Cấu hình Syslog-ng
+5. Cấu hình Data Input trên Splunk
+6. Cấu hình Alert trên Splunk
+7. Cấu hình Telegram
 
-## 3. Cấu hình Data Input trên Splunk
+---
 
-### 3.1. Tạo Data Input UDP 1514
-- Vào **Settings > Data inputs > UDP > New**
-- Port: `1514`
-- Source type: `suricata`
-- Index: `main`
+## 1. CÀI ĐẶT PFSENSE
 
-### 3.2. Cấu hình TA-suricata
-Copy file `props.conf` và `transforms.conf` vào `/opt/splunk/etc/apps/TA-suricata-master/local/`
+### 1.1. Tải pfSense CE 2.7.2
 
-## 4. Cấu hình syslog-ng trên pfSense
-- Mở file `/usr/local/etc/syslog-ng.conf`
-- Cấu hình theo nội dung trong `configs/pfsense/syslog-ng.conf`
-- Khởi động lại syslog-ng: `service syslog-ng restart`
+Tải file ISO từ trang chủ: https://www.pfsense.org/download/
 
-## 5. Cấu hình Alert trên Splunk
+### 1.2. Tạo máy ảo trên VMware
 
-### 5.1. Tạo Alert
-- Vào **Settings > Searches, reports, and alerts > New Alert**
-- Title: `Scan Attack Detected`
-- Alert type: `Scheduled`
-- Cron: `*/5 * * * *`
-- Time Range: `Last 5 minutes`
-- SPL: index=main sourcetype=suricata event_type=alert (signature="SCAN" OR category="Scan")
-       | table _time, src_ip, dest_ip, dest_port, proto, signature, category, severity_id, action, dvc
-       | sort - _time
+Tham chiếu cấu hình chi tiết tại: lab-setup/vmware-settings.md
 
-### 5.2. Trigger Actions
-- Add to Triggered Alerts
-- Send email
-- Telegram Alert (Custom Alert Action)
+Cấu hình tối thiểu: RAM 4 GB, CPU 2 cores, Disk 20 GB, 2 card mạng (WAN: Bridged, LAN: VMnet1).
 
-## 6. Cấu hình Telegram
+### 1.3. Cài đặt pfSense
 
-### 6.1. Tạo Bot Telegram
-- Tìm `@BotFather` trên Telegram
-- Gửi `/newbot` và làm theo hướng dẫn
-- Lưu token
+- Cài từ file ISO, chọn phân vùng mặc định.
+- Cấu hình WAN (DHCP hoặc IP tĩnh) và LAN (192.168.1.1/24).
+- Đặt mật khẩu admin.
 
-### 6.2. Lấy Chat ID
-- Gửi tin nhắn đến bot
-- Gọi API: `https://api.telegram.org/bot<TOKEN>/getUpdates`
-- Lấy `chat_id` từ response
+### 1.4. Cấu hình ban đầu
 
-### 6.3. Cài script Telegram
-- Copy `telegram_alert.py` vào `/opt/splunk/etc/apps/search/bin/`
-- Cấu hình `alert_actions.conf` trong `/opt/splunk/etc/apps/search/local/`
+- Truy cập https://192.168.1.1, chạy Setup Wizard.
+- Cấu hình hostname, domain, DNS, WAN/LAN interface.
 
-### 6.4. Cấu hình biến môi trường
-- Tạo file `.env` trong `/opt/splunk/etc/apps/search/bin/`
-- Thêm token và chat_id thật
+---
 
-## 7. Kiểm tra
-- Chạy `nmap -sS 192.168.1.131`
-- Kiểm tra alert trên Telegram   
+## 2. CÀI ĐẶT SURICATA
+
+### 2.1. Cài đặt Suricata trên pfSense
+
+- Vào System > Package Manager > Available Packages, tìm và cài Suricata.
+
+### 2.2. Cấu hình Suricata
+
+- Vào Services > Suricata, thêm interface WAN.
+- Bật EVE JSON Log (chọn FILE), chọn chế độ IDS.
+
+### 2.3. Bật rule phát hiện tấn công
+
+Vào Services > Suricata > WAN Categories, bật các rule:
+- emerging-scan.rules
+- emerging-dos.rules
+- emerging-web_server.rules
+
+### 2.4. Cập nhật rule
+
+Vào Services > Suricata > Updates, nhấn Update Rules.
+
+### 2.5. Khởi động Suricata
+
+Vào Services > Suricata > Interfaces, nhấn Play để khởi động trên WAN.
+
+---
+
+## 3. CÀI ĐẶT SPLUNK ENTERPRISE
+
+### 3.1. Tải Splunk Enterprise
+
+Tải từ: https://www.splunk.com/en_us/download/splunk-enterprise.html
+
+### 3.2. Cài đặt trên Ubuntu Server 22.04
+
+cd /tmp
+tar -xvzf splunk-10.4.2-*.tgz -C /opt
+sudo /opt/splunk/bin/splunk start --accept-license
+
+### 3.3. Bật khởi động cùng hệ thống
+
+sudo /opt/splunk/bin/splunk enable boot-start
+
+### 3.4. Truy cập Splunk
+
+http://192.168.1.138:8000
+
+---
+
+## 4. CẤU HÌNH SYSLOG-NG
+
+### 4.1. Copy file cấu hình
+
+File cấu hình mẫu: configs/pfsense/syslog-ng.conf
+
+Copy file vào pfSense:
+
+scp configs/pfsense/syslog-ng.conf admin@192.168.1.1:/usr/local/etc/syslog-ng.conf
+
+### 4.2. Khởi động lại Syslog-ng
+
+service syslog-ng restart
+
+---
+
+## 5. CẤU HÌNH DATA INPUT TRÊN SPLUNK
+
+### 5.1. Tạo UDP Data Input
+
+- Vào Settings > Data inputs > UDP > New Local UDP.
+- Cấu hình Port 1514, Source type suricata, Index main.
+
+### 5.2. Cấu hình TA-suricata
+
+- Cài app TA-suricata từ Splunkbase: https://splunkbase.splunk.com/app/3946
+- Copy file cấu hình:
+
+cp configs/splunk/props.conf /opt/splunk/etc/apps/TA-suricata-master/local/
+cp configs/splunk/transforms.conf /opt/splunk/etc/apps/TA-suricata-master/local/
+
+- Khởi động lại Splunk:
+
+sudo /opt/splunk/bin/splunk restart
+
+---
+
+## 6. CẤU HÌNH ALERT TRÊN SPLUNK
+
+### 6.1. Tạo Alert phát hiện Scan
+
+- Vào Settings > Searches, reports, and alerts > New Alert.
+- Title: Scan Attack Detected
+- Alert type: Scheduled, Cron: */5 * * * *, Time Range: Last 5 minutes.
+- SPL:
+
+index=main sourcetype=suricata event_type=alert
+(
+    alert.category="Detection of a Network Scan" OR
+    alert.category="Attempted Information Leak" OR
+    alert.signature="*SCAN*" OR
+    alert.signature="*Scan*" OR
+    alert.signature="*scan*" OR
+    alert.signature="*Nmap*" OR
+    alert.signature="*Nikto*" OR
+    alert.signature="*Masscan*" OR
+    alert.signature="*Zmap*" OR
+    alert.signature="*Portscan*" OR
+    alert.signature="*Port Scan*" OR
+    alert.signature="*SYN Scan*" OR
+    alert.signature="*XMAS*" OR
+    alert.signature="*NULL Scan*" OR
+    alert.signature="*FIN Scan*" OR
+    alert.signature="*ACK Scan*" OR
+    alert.signature="*UDP Scan*" OR
+    alert.signature="*Suspicious inbound*" OR
+    alert.signature="*Suspicious outbound*"
+)
+NOT (
+    alert.category="Attempted Denial of Service" OR
+    alert.signature="*DOS*" OR
+    alert.signature="*DDoS*" OR
+    alert.signature="*Flood*" OR
+    alert.signature="*Brute*" OR
+    alert.signature="*Login*" OR
+    alert.signature="*Auth*" OR
+    alert.category="*Trojan*" OR
+    alert.category="*Malware*" OR
+    alert.category="*Policy*" OR
+    alert.signature="*Exfiltration*"
+)
+| eval Attack_Type = case(
+    match(alert.signature, "(?i)nmap"), "Nmap Scan",
+    match(alert.signature, "(?i)nikto"), "Nikto Scan",
+    match(alert.signature, "(?i)masscan"), "Masscan Scan",
+    match(alert.signature, "(?i)zmap"), "Zmap Scan",
+    match(alert.signature, "(?i)syn scan"), "SYN Scan",
+    match(alert.signature, "(?i)xmas"), "XMAS Scan",
+    match(alert.signature, "(?i)null scan"), "NULL Scan",
+    match(alert.signature, "(?i)fin scan"), "FIN Scan",
+    match(alert.signature, "(?i)ack scan"), "ACK Scan",
+    match(alert.signature, "(?i)udp scan"), "UDP Scan",
+    match(alert.signature, "(?i)portscan|port scan"), "Port Scan",
+    match(alert.signature, "(?i)suspicious inbound"), "Suspicious Inbound Scan",
+    match(alert.signature, "(?i)suspicious outbound"), "Suspicious Outbound Scan",
+    match(alert.signature, "(?i)scan"), "Generic Scan",
+    true(), "Other Scan"
+)
+| table _time, src_ip, dest_ip, dest_port, Attack_Type, alert.signature, alert.category, alert.severity, proto, dvc, action
+| sort -_time
+
+### 6.2. Tạo Alert phát hiện DDoS
+
+- Title: DDoS Attack Detected
+- Alert type: Scheduled, Cron: */5 * * * *, Time Range: Last 5 minutes.
+- SPL:
+
+index=main sourcetype=suricata event_type=alert
+(
+    alert.category="Attempted Denial of Service" OR
+    alert.signature="*SYN Flood*" OR
+    alert.signature="*UDP Flood*" OR
+    alert.signature="*ICMP Flood*" OR
+    alert.signature="*DoS*" OR
+    alert.signature="*DDoS*"
+)
+NOT (
+    alert.signature="*SCAN*" OR
+    alert.category="*Scan*" OR
+    alert.signature="*Brute*" OR
+    alert.signature="*Login*" OR
+    alert.signature="*Auth*" OR
+    alert.signature="*Vulnerability*" OR
+    alert.signature="*Nessus*" OR
+    alert.signature="*OpenVAS*" OR
+    alert.category="*Trojan*" OR
+    alert.category="*Malware*" OR
+    alert.signature="*Exfiltration*" OR
+    alert.signature="*Data Loss*" OR
+    alert.category="*Policy*" OR
+    alert.signature="*POLICY*"
+)
+| eval Attack_Type = case(
+    match(alert.signature, "(?i)syn flood"), "SYN Flood",
+    match(alert.signature, "(?i)udp flood"), "UDP Flood",
+    match(alert.signature, "(?i)icmp"), "ICMP Flood",
+    match(alert.signature, "(?i)dos"), "DoS Attack",
+    true(), "Other DDoS"
+)
+| table _time, src_ip, dest_ip, dest_port, Attack_Type, alert.signature, alert.category, alert.severity, proto, dvc, action
+| sort -_time
+
+### 6.3. Tạo Alert phát hiện SQL Injection
+
+- Title: SQL Injection Detected
+- Alert type: Scheduled, Cron: */5 * * * *, Time Range: Last 5 minutes.
+- SPL:
+
+index=main sourcetype=suricata event_type=alert
+(
+    alert.signature="*SQL Injection*" OR
+    alert.signature="*UNION*SELECT*" OR
+    alert.signature="*SELECT*FROM*" OR
+    alert.signature="*Blind SQL*" OR
+    alert.signature="*Time-based SQL*" OR
+    alert.signature="*Error-based SQL*" OR
+    (alert.category="Web Application Attack" AND alert.signature="*SQL*")
+)
+NOT (alert.signature="*SCAN*" OR alert.category="*Scan*")
+| eval Attack_Type = case(
+    match(alert.signature, "(?i)union.*select"), "UNION SELECT Injection",
+    match(alert.signature, "(?i)select.*from"), "SELECT FROM Injection",
+    match(alert.signature, "(?i)blind"), "Blind SQL Injection",
+    match(alert.signature, "(?i)time-based"), "Time-based SQL Injection",
+    match(alert.signature, "(?i)error-based"), "Error-based SQL Injection",
+    match(alert.signature, "(?i)sql injection"), "SQL Injection",
+    true(), "Other SQL Attack"
+)
+| table _time, src_ip, dest_ip, dest_port, Attack_Type, alert.signature, alert.category, alert.severity, proto, dvc, action
+| sort -_time
+
+---
+
+## 7. CẤU HÌNH TELEGRAM
+
+### 7.1. Tạo Bot Telegram
+
+- Tìm @BotFather trên Telegram, gửi /newbot, lưu token.
+
+### 7.2. Lấy Chat ID
+
+- Gửi tin nhắn đến bot, gọi API:
+  https://api.telegram.org/bot<TOKEN>/getUpdates
+- Lấy chat_id từ response.
+
+### 7.3. Cài script Telegram
+
+cp scripts/telegram_alert.py /opt/splunk/etc/apps/search/bin/
+chmod +x /opt/splunk/etc/apps/search/bin/telegram_alert.py
+
+### 7.4. Cấu hình biến môi trường
+
+Tạo file .env trong /opt/splunk/etc/apps/search/bin/ với nội dung:
+
+TELEGRAM_BOT_TOKEN=<your_token>
+TELEGRAM_CHAT_ID=<your_chat_id>
+
+### 7.5. Cấu hình alert_actions.conf
+
+File cấu hình mẫu: configs/splunk/alert_actions.conf
+
+Copy file vào: /opt/splunk/etc/apps/search/local/alert_actions.conf
+
+### 7.6. Khởi động lại Splunk
+
+sudo /opt/splunk/bin/splunk restart
+
+---
+
+## XỬ LÝ LỖI
+
+Nếu gặp lỗi, tham khảo: troubleshooting.md
