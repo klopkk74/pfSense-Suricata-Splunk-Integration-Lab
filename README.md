@@ -204,9 +204,10 @@ pfSense-Suricata-Splunk-Integration-Lab/
 │   ├── scan-attack/
 │   └── sql-injection/
 └── lab-setup/             
+```
 
 ---
-```markdown
+
 ## 📚 Tài liệu
 
 - [Hướng dẫn cài đặt](docs/setup-guide.md)
@@ -220,6 +221,5 @@ pfSense-Suricata-Splunk-Integration-Lab/
 ## 📄 Giấy phép
 
 Dự án được phân phối dưới giấy phép MIT. Xem file [LICENSE](LICENSE) để biết thêm chi tiết.
-```
 
 ---
