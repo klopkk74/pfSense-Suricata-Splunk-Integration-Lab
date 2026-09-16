@@ -58,9 +58,9 @@
 ### Sơ đồ tổng quan
 
 <p align="center">
-  <img src="diagrams/architecture.png" alt="Architecture" width="80%">
+  <img src="diagrams/architecture.png?v=2" alt="Architecture" width="80%">
   <br>
-  <em>Sơ đồ kiến trúc tổng quan của hệ thống SOC Lab</em>
+  <em>Sơ đồ kiến trúc tổng quan của hệ thống</em>
 </p>
 
 ### 🔄 Luồng dữ liệu
