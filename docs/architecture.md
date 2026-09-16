@@ -26,10 +26,6 @@ flowchart LR
 
 ## Giải thích luồng dữ liệu
 
-Luồng dữ liệu mô tả toàn bộ quá trình dữ liệu được tạo ra, xử lý và truyền đi từ khi Attacker phát sinh tấn công cho đến khi cảnh báo được gửi tới người quản trị qua Telegram. Mỗi bước dưới đây tập trung vào dữ liệu được biến đổi như thế nào, không đi vào một loại tấn công hay một rule cụ thể nào.
-
----
-
 ### Bước 1 — Attacker phát sinh traffic tấn công
 
 - Attacker thực hiện tấn công vào hệ thống mạng LAN.
