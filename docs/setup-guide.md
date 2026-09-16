@@ -93,9 +93,6 @@ sudo /opt/splunk/bin/splunk start --accept-license
 ```bash
 sudo /opt/splunk/bin/splunk enable boot-start
 ```
-### 3.4. Truy cập Splunk
-
-http://192.168.1.138:8000
 
 ---
 
