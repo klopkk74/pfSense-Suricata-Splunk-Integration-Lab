@@ -109,7 +109,7 @@ Dự án tập trung vào việc phát hiện và cảnh báo ba loại tấn c�
 </p>
 
 <p align="center">
-  <img src="images/scan-attack/telegram-scan-notification" alt="Telegram Scan Notification" width="80%">
+  <img src="images/scan-attack/telegram-scan-notification.png" alt="Telegram Scan Notification" width="80%">
   <br>
   <em>Telegram gửi cảnh báo Scan đến người quản trị</em>
 </p>
@@ -126,19 +126,19 @@ Dự án tập trung vào việc phát hiện và cảnh báo ba loại tấn c�
 </p>
 
 <p align="center">
-  <img src="images/ddos-attack/suricata-create-alert-ddos.png" alt="Suricata DDoS Alert" width="80%">
+  <img src="images/ddos-attack/suricata-ddos-alert.png" alt="Suricata DDoS Alert" width="80%">
   <br>
   <em>Suricata trên pfSense phát hiện và tạo cảnh báo DDoS</em>
 </p>
 
 <p align="center">
-  <img src="images/ddos-attack/splunk-collect-log-ddos.png" alt="Splunk DDoS Log" width="80%">
+  <img src="images/ddos-attack/splunk-ddos-log-collection.png" alt="Splunk DDoS Log" width="80%">
   <br>
   <em>Splunk thu thập log DDoS từ Suricata</em>
 </p>
 
 <p align="center">
-  <img src="images/ddos-attack/telegram-notify-alert-ddos.png" alt="Telegram DDoS Notification" width="80%">
+  <img src="images/ddos-attack/telegram-ddos-notification.png" alt="Telegram DDoS Notification" width="80%">
   <br>
   <em>Telegram gửi cảnh báo DDoS đến người quản trị</em>
 </p>
@@ -149,30 +149,28 @@ Dự án tập trung vào việc phát hiện và cảnh báo ba loại tấn c�
 - **Cách phát hiện**: Suricata sử dụng các rule trong `emerging-web_server.rules` để phát hiện các mẫu `UNION SELECT`, `SELECT FROM`, v.v.
 
 <p align="center">
-  <img src="images/sql-injection/kali-attack-sql-injection.png" alt="Kali SQL Injection" width="80%">
+  <img src="images/sql-injection/kali-sql-injection-payload.png" alt="Kali SQL Injection" width="80%">
   <br>
   <em>Kali Linux thực hiện tấn công SQL Injection vào ô tìm kiếm</em>
 </p>
 
 <p align="center">
-  <img src="images/sql-injection/suricata-create-alert-sql-injection.png" alt="Suricata SQL Alert" width="80%">
+  <img src="images/sql-injection/suricata-alert-detected.png" alt="Suricata SQL Alert" width="80%">
   <br>
   <em>Suricata trên pfSense phát hiện và tạo cảnh báo SQL Injection</em>
 </p>
 
 <p align="center">
-  <img src="images/sql-injection/splunk-collect-log-sql-injection.png" alt="Splunk SQL Log" width="80%">
+  <img src="images/sql-injection/splunk-log-collection.png" alt="Splunk SQL Log" width="80%">
   <br>
   <em>Splunk thu thập log SQL Injection từ Suricata</em>
 </p>
 
 <p align="center">
-  <img src="images/sql-injection/telegram-notify-alert-sql-injection.png" alt="Telegram SQL Notification" width="80%">
+  <img src="images/sql-injection/telegram-alert-notification.png" alt="Telegram SQL Notification" width="80%">
   <br>
   <em>Telegram gửi cảnh báo SQL Injection đến người quản trị</em>
 </p>
-
----
 
 ## 📂 Cấu trúc thư mục
 
