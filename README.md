@@ -63,22 +63,6 @@
   <em>Sơ đồ kiến trúc tổng quan của hệ thống</em>
 </p>
 
-### 🔄 Luồng dữ liệu
-
-<div align="center">
-
-| Bước | Từ | Đến | Giao thức / Port | Mô tả |
-|------|----|-----|------------------|-------|
-| 1 | Attacker | Internet | — | Gửi gói tin tấn công |
-| 2 | Internet | pfSense | — | Gói tin đến WAN interface |
-| 3 | Suricata | pfSense | — | Phát hiện tấn công, ghi log vào `eve.json` |
-| 4 | pfSense | Splunk | UDP 1514 | Syslog-ng gửi log JSON đến Splunk |
-| 5 | Splunk | — | — | Parse JSON, lưu vào index, chạy Alert |
-| 6 | Splunk | Telegram | HTTPS | Trigger Actions gửi cảnh báo |
-| 7 | Telegram | Admin | — | Gửi tin nhắn cảnh báo |
-
-</div>
-
 ---
 
 ## 🚨 Các loại tấn công được phát hiện
