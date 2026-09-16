@@ -91,25 +91,25 @@ Dự án tập trung vào việc phát hiện và cảnh báo ba loại tấn c�
 - **Cách phát hiện**: Suricata sử dụng các rule trong `emerging-scan.rules` để phát hiện các dấu hiệu quét cổng (SYN scan, XMAS scan, NULL scan, v.v.).
 
 <p align="center">
-  <img src="images/scan-attack/kali-attack-scan.png" alt="Kali Nmap Scan" width="80%">
+  <img src="images/scan-attack/kali-scan-attack.png" alt="Kali Nmap Scan" width="80%">
   <br>
   <em>Kali Linux thực hiện tấn công quét cổng bằng Nmap</em>
 </p>
 
 <p align="center">
-  <img src="images/scan-attack/suricata-create-alert-scan.png" alt="Suricata Scan Alert" width="80%">
+  <img src="images/scan-attack/suricata-scan-alert.png" alt="Suricata Scan Alert" width="80%">
   <br>
   <em>Suricata trên pfSense phát hiện và tạo cảnh báo Scan</em>
 </p>
 
 <p align="center">
-  <img src="images/scan-attack/splunk-collect-log-scan.png" alt="Splunk Scan Log" width="80%">
+  <img src="images/scan-attack/splunk-scan-log-collection.png" alt="Splunk Scan Log" width="80%">
   <br>
   <em>Splunk thu thập log Scan từ Suricata</em>
 </p>
 
 <p align="center">
-  <img src="images/scan-attack/telegram-notify-scan.png" alt="Telegram Scan Notification" width="80%">
+  <img src="images/scan-attack/telegram-scan-notification" alt="Telegram Scan Notification" width="80%">
   <br>
   <em>Telegram gửi cảnh báo Scan đến người quản trị</em>
 </p>
@@ -120,7 +120,7 @@ Dự án tập trung vào việc phát hiện và cảnh báo ba loại tấn c�
 - **Cách phát hiện**: Suricata sử dụng các rule trong `emerging-dos.rules` để phát hiện SYN Flood, UDP Flood, ICMP Flood.
 
 <p align="center">
-  <img src="images/ddos-attack/kali-attack-ddos.png" alt="Kali DDoS Attack" width="80%">
+  <img src="images/ddos-attack/kali-ddos-attack.png" alt="Kali DDoS Attack" width="80%">
   <br>
   <em>Kali Linux thực hiện tấn công DDoS vào máy mục tiêu</em>
 </p>
