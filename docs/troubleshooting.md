@@ -6,7 +6,7 @@
 
 ## 1. Splunk không nhận log Suricata
 
-**Triệu chứng**: Splunk không hiển thị log Suricata, hoặc index `main` trống.
+**Lỗi**: Splunk không hiển thị log Suricata, hoặc index `main` trống.
 
 **Kiểm tra**:
 - Data Input: **Settings > Data inputs > UDP > 1514** (đảm bảo Status = Enabled)
@@ -32,7 +32,7 @@
 
 ## 2. Log Suricata không parse được
 
-**Triệu chứng**: Log hiển thị trong Splunk nhưng không tách được trường (`src_ip`, `dest_ip`, `alert.signature`...).
+**Lỗi**: Log hiển thị trong Splunk nhưng không tách được trường (`src_ip`, `dest_ip`, `alert.signature`...).
 
 **Kiểm tra**:
 - `props.conf`:
@@ -52,7 +52,7 @@
 
 ## 3. Telegram không gửi được tin nhắn
 
-**Triệu chứng**: Alert kích hoạt nhưng không có tin nhắn Telegram.
+**Lỗi**: Alert kích hoạt nhưng không có tin nhắn Telegram.
 
 **Kiểm tra**:
 - Token và chat_id trong file `.env`
@@ -75,7 +75,7 @@
 
 ## 4. Thời gian hiển thị sai
 
-**Triệu chứng**: Thời gian trong alert Telegram lệch so với thực tế.
+**Lỗi**: Thời gian trong alert Telegram lệch so với thực tế.
 
 **Giải pháp**:
 - Cộng thêm 7 giờ (UTC+7) trong script Python
@@ -85,7 +85,7 @@
 
 ## 5. Suricata không tạo alert
 
-**Triệu chứng**: Đã tấn công nhưng không thấy alert trong `eve.json` hoặc Splunk.
+**Lỗi**: Đã tấn công nhưng không thấy alert trong `eve.json` hoặc Splunk.
 
 **Kiểm tra**:
 - File `eve.json`:
@@ -107,7 +107,7 @@
 
 ## 6. Lỗi cổng 5140 trên syslog-ng
 
-**Triệu chứng**:
+**Lỗi**:
 Error binding socket; addr='AF_INET(<pfsense_IP>:5140)'
 
 **Giải pháp**: Đổi cổng thành 5141 trong cấu hình syslog-ng
@@ -116,7 +116,7 @@ Error binding socket; addr='AF_INET(<pfsense_IP>:5140)'
 
 ## 7. Splunk không khởi động được
 
-**Triệu chứng**: `splunk start` báo lỗi permission hoặc không chạy.
+**Lỗi**: `splunk start` báo lỗi permission hoặc không chạy.
 
 **Kiểm tra**:
 - Quyền sở hữu thư mục Splunk:
@@ -139,7 +139,7 @@ Error binding socket; addr='AF_INET(<pfsense_IP>:5140)'
 
 ## 8. Alert không kích hoạt dù có log
 
-**Triệu chứng**: Log có trong Splunk nhưng Alert không chạy.
+**Lỗi**: Log có trong Splunk nhưng Alert không chạy.
 
 **Kiểm tra**:
 - Cron schedule: */5 * * * *
@@ -152,7 +152,7 @@ Error binding socket; addr='AF_INET(<pfsense_IP>:5140)'
 
 ## 9. Rule Suricata không match
 
-**Triệu chứng**: Đã bật rule nhưng không có alert.
+**Lỗi**: Đã bật rule nhưng không có alert.
 
 **Kiểm tra**:
 - Rule đã được enable chưa (dấu tick xanh)
@@ -164,7 +164,7 @@ Error binding socket; addr='AF_INET(<pfsense_IP>:5140)'
 
 ## 10. Syslog-ng không gửi log đi
 
-**Triệu chứng**: Syslog-ng chạy nhưng Splunk không nhận được log.
+**Lỗi**: Syslog-ng chạy nhưng Splunk không nhận được log.
 
 **Kiểm tra**:
 - Kết nối UDP 1514 từ pfSense đến Splunk:
@@ -181,7 +181,7 @@ Error binding socket; addr='AF_INET(<pfsense_IP>:5140)'
 
 ## 11. Telegram bot không phản hồi
 
-**Triệu chứng**: Bot không gửi tin nhắn dù đã cấu hình đúng.
+**Lỗi**: Bot không gửi tin nhắn dù đã cấu hình đúng.
 
 **Kiểm tra**:
 - Token có đúng không (thử gọi API):
@@ -201,7 +201,7 @@ Error binding socket; addr='AF_INET(<pfsense_IP>:5140)'
 
 ## 12. Suricata bị quá tải, bỏ sót gói
 
-**Triệu chứng**: Tấn công mạnh nhưng Suricata không phát hiện.
+**Lỗi**: Tấn công mạnh nhưng Suricata không phát hiện.
 
 **Giải pháp**:
 - Giảm tốc độ tấn công (dùng --interval thay vì --flood)
@@ -217,7 +217,7 @@ Error binding socket; addr='AF_INET(<pfsense_IP>:5140)'
 
 ## 13. Splunk Free hết hạn
 
-**Triệu chứng**: Splunk báo hết hạn license.
+**Lỗi**: Splunk báo hết hạn license.
 
 **Giải pháp**:
 - Chuyển sang Splunk Free (giới hạn 500MB/ngày)
@@ -228,7 +228,7 @@ Error binding socket; addr='AF_INET(<pfsense_IP>:5140)'
 
 ## 14. Lỗi kết nối giữa các máy ảo
 
-**Triệu chứng**: Không ping được giữa các máy ảo.
+**Lỗi**: Không ping được giữa các máy ảo.
 
 **Kiểm tra**:
 - Chế độ mạng VMware: NAT, Bridged, Host-only
@@ -244,7 +244,7 @@ Error binding socket; addr='AF_INET(<pfsense_IP>:5140)'
 
 ## 15. Alert gửi quá nhiều tin nhắn trùng lặp
 
-**Triệu chứng**: Cùng một cuộc tấn công nhưng nhận nhiều tin nhắn.
+**Lỗi**: Cùng một cuộc tấn công nhưng nhận nhiều tin nhắn.
 
 **Giải pháp**:
 - Sử dụng alert.category thay vì alert.signature trong message
