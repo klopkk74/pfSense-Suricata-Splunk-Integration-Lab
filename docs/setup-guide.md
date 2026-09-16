@@ -303,16 +303,18 @@ chmod +x /opt/splunk/etc/apps/search/bin/telegram_alert.py
 ```
 ### 7.4. Cấu hình biến môi trường
 
-Tạo file .env trong /opt/splunk/etc/apps/search/bin/ với nội dung:
+- Tạo file .env trong /opt/splunk/etc/apps/search/bin/ với nội dung:
 
+```bash
 TELEGRAM_BOT_TOKEN=<your_token>
 TELEGRAM_CHAT_ID=<your_chat_id>
+```
 
 ### 7.5. Cấu hình alert_actions.conf
 
-File cấu hình mẫu: configs/splunk/alert_actions.conf
+- File cấu hình mẫu: configs/splunk/alert_actions.conf
 
-Copy file vào: /opt/splunk/etc/apps/search/local/alert_actions.conf
+- Copy file vào: /opt/splunk/etc/apps/search/local/alert_actions.conf
 
 ### 7.6. Khởi động lại Splunk
 
@@ -324,4 +326,4 @@ sudo /opt/splunk/bin/splunk restart --run-as-root
 
 ## XỬ LÝ LỖI
 
-Nếu gặp lỗi, tham khảo: troubleshooting.md
+- Nếu gặp lỗi, tham khảo: troubleshooting.md
