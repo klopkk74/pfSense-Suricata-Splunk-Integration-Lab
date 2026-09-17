@@ -1,7 +1,18 @@
-#!/usr/bin/env python3
 import sys, json, urllib.request
 from datetime import datetime, timedelta
 import os
+
+def load_env():
+    env_path = os.path.join(os.path.dirname(__file__), '.env')
+    if os.path.exists(env_path):
+        with open(env_path, 'r') as f:
+            for line in f:
+                line = line.strip()
+                if line and not line.startswith('#'):
+                    key, value = line.split('=', 1)
+                    os.environ[key] = value
+
+load_env()
 
 TOKEN = os.environ.get('TELEGRAM_BOT_TOKEN')
 CHAT_ID = os.environ.get('TELEGRAM_CHAT_ID')
@@ -41,31 +52,40 @@ if __name__ == "__main__":
         input_data = json.loads(sys.stdin.read())
         result = input_data.get('result', {})
 
+        # Lấy dữ liệu
         src_ip = result.get('src_ip', 'N/A')
         dest_ip = result.get('dest_ip', 'N/A')
         dest_port = result.get('dest_port', 'N/A')
-        signature = result.get('signature', 'Unknown')
-        severity_raw = result.get('severity_id', 'N/A')
+        signature = result.get('alert.signature', 'Unknown Alert')
+        category = result.get('alert.category', 'Unknown Category')
+        severity_raw = result.get('alert.severity', 'N/A')
         dvc = result.get('dvc', 'N/A')
+        protocol = result.get('proto', 'N/A')
+        action = result.get('action', 'N/A')
 
+        # Xử lý severity
         try:
             severity = int(severity_raw)
         except:
             severity = 'N/A'
-        severity_map = {1: "🔴 CRITICAL", 2: "🟠 HIGH", 3: "🟡 MEDIUM"}
+        severity_map = {1: "🔴 HIGH", 2: "🟠 MEDIUM", 3: "🟡 LOW"}
         severity_text = severity_map.get(severity, f"Severity: {severity_raw}")
 
+        # Định dạng thời gian
         time_val = result.get('_time', 'N/A')
         formatted_time = format_time(time_val)
 
-        message = f"""🚨 SCAN ATTACK DETECTED
+        message = f"""🚨 <b>{category}</b>
 
-Time   : {formatted_time}
-Source : {src_ip}
-Target : {dest_ip}:{dest_port}
-Type   : {signature}
-Risk   : {severity_text}
-Device : pfSense"""
+Time     : {formatted_time}
+Source   : {src_ip}
+Target   : {dest_ip}:{dest_port}
+Protocol : {protocol}
+Signature: {signature}
+Severity : {severity_text}
+Device   : {dvc}
+Action   : {action}"""
+        # --- KẾT THÚC SỬA ---
 
         send_telegram(message)
     except Exception as e:
