@@ -1,6 +1,6 @@
 # Suricata Rules – Detection on pfSense
 
-## NMAP Scan Detection ( emerging-scan.rules)
+## NMAP Scan Detection (emerging-scan.rules)
 
 | SID | Rule Description |
 |-----|------------------|
