@@ -1,6 +1,6 @@
 # Suricata Rules – Detection on pfSense
 
-## NMAP Scan Detection
+## NMAP Scan Detection ( emerging-scan.rules)
 
 | SID | Rule Description |
 |-----|------------------|
@@ -22,7 +22,7 @@
 
 ---
 
-## DDoS Detection
+## DDoS Detection (emerging-dos.rules)
 
 | SID | Rule Description |
 |-----|------------------|
@@ -34,7 +34,7 @@
 
 ---
 
-## SQL Injection Detection
+## SQL Injection Detection (emerging-web_server.rules)
 
 | SID | Rule Description |
 |-----|------------------|
