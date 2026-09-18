@@ -1,6 +1,8 @@
-# Suricata rules enabled for scan detection on pfSense
+# Suricata rules enabled for detection on pfSense
 
+# ============================================
 # NMAP Scan Detection
+# ============================================
 2000537  # ET SCAN NMAP -sS window 2048
 2000536  # ET SCAN NMAP -sO
 2000538  # ET SCAN NMAP -sA (1)
@@ -16,3 +18,21 @@
 2022579  # ET SCAN MsSQL Malicious
 2021023  # ET SCAN Nmap NSE Heartbleed Request
 2021024  # ET SCAN Nmap NSE Heartbleed Response
+
+# ============================================
+# DDoS Detection
+# ============================================
+2019404  # ET DOS Potential Tsunami SYN Flood Denial Of Service Attempt
+2009701  # ET DOS DNS BIND 9 Dynamic Update DoS attempt
+2019102  # ET DOS Possible SSDP Amplification Scan in Progress
+2019018  # ET DOS Possible NTP DDoS Inbound Frequent Un-Authed PEER_LIST_SUM Requests IMPL 0x03
+2019346  # ET DOS Terse HTTP GET Likely LOIC
+
+# ============================================
+# SQL Injection Detection
+# ============================================
+2006445  # ET WEB_SERVER Possible SQL Injection Attempt SELECT FROM
+2006446  # ET WEB_SERVER Possible SQL Injection Attempt UNION SELECT
+2006444  # ET WEB_SERVER Possible SQL Injection Attempt INSERT INTO
+2006443  # ET WEB_SERVER Possible SQL Injection Attempt DELETE FROM
+2011042  # ET WEB_SERVER MYSQL SELECT CONCAT SQL Injection Attempt
