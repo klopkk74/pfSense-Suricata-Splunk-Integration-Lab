@@ -30,7 +30,7 @@
 | [Suricata](https://suricata.io/) | 7.0.8 |
 | [Splunk Enterprise](https://www.splunk.com/) | 10.4.2 |
 | [Syslog-ng](https://www.syslog-ng.com/) | 4.4.0 |
-| [Telegram Bot API](https://core.telegram.org/bots/api) | — |
+| [Telegram Bot API](https://core.telegram.org/bots/api) | 10.0 |
 | [Python](https://www.python.org/) | 3.14.4 |
 | [Kali Linux](https://www.kali.org/) | 2026.2 |
 | [Ubuntu Server](https://ubuntu.com/) | 22.04 LTS |
