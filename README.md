@@ -70,7 +70,7 @@
 ### 1. 🔍 Nmap Scan
 
 - **Mô tả**: Kẻ tấn công sử dụng Nmap để quét cổng, dịch vụ và hệ điều hành của máy mục tiêu.
-- **Cách phát hiện**: Suricata sử dụng các rule trong `emerging-scan.rules` để phát hiện các dấu hiệu quét cổng (SYN scan, XMAS scan, NULL scan, v.v.).
+- **Cách phát hiện**: Suricata sử dụng các rule trong `emerging-scan.rules` để phát hiện các dấu hiệu quét cổng (SYN scan, XMAS scan, NULL scan, ...).
 
 <p align="center">
   <img src="images/scan-attack/kali-scan-attack.png" alt="Kali Nmap Scan" width="80%">
@@ -99,7 +99,7 @@
 ### 2. 💥 DDoS (Distributed Denial of Service)
 
 - **Mô tả**: Kẻ tấn công gửi một lượng lớn gói tin (SYN, UDP, ICMP) để làm cạn kiệt tài nguyên của máy mục tiêu.
-- **Cách phát hiện**: Suricata sử dụng các rule trong `emerging-dos.rules` để phát hiện SYN Flood, UDP Flood, ICMP Flood.
+- **Cách phát hiện**: Suricata sử dụng các rule trong `emerging-dos.rules` để phát hiện SYN Flood, UDP Flood, ICMP Flood, ...
 
 <p align="center">
   <img src="images/ddos-attack/kali-ddos-attack.png" alt="Kali DDoS Attack" width="80%">
