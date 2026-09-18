@@ -139,7 +139,7 @@
 <p align="center">
   <img src="images/sql-injection/kali-sql-injection-payload.png" alt="Kali SQL Injection Payload" width="80%">
   <br>
-  <em>Kali Linux thực hiện tấn công SQL Injection vào thanh địa chỉ</em>
+  <em>Kali Linux thực hiện tấn công SQL Injection vào thanh địa chỉ URL</em>
 </p>
 
 <p align="center">
